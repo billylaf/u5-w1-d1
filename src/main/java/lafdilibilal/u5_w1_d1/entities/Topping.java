@@ -1,15 +1,17 @@
 package lafdilibilal.u5_w1_d1.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+public class Topping extends ElementMenu {
 
+    protected Topping() {
+        super();
+    }
 
-@Getter
-@AllArgsConstructor
-@ToString
-public class Topping {
-    private String name;
-    private int calories;
-    private double price;
+    public Topping(String name, double price, int calories) {
+        super(name, price, calories);
+    }
+
+    @Override
+    public String toString() {
+        return "Topping{} " + super.toString();
+    }
 }

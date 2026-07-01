@@ -1,17 +1,18 @@
 package lafdilibilal.u5_w1_d1.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+public class Drink extends ElementMenu {
 
-@Getter
-@AllArgsConstructor
-public class Drink implements MenuItem {
-    private String name;
-    private double volume;
-    private int calories;
-    private double price;
-
-    public String toString() {
-        return name + " (" + volume + "l)";
+    protected Drink() {
+        super();
     }
+
+    public Drink(String name, double price, int calories) {
+        super(name, price, calories);
+    }
+
+    @Override
+    public String toString() {
+        return "Drink{} " + super.toString();
+    }
+
 }

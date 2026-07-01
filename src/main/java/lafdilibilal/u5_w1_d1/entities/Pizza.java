@@ -1,47 +1,54 @@
 package lafdilibilal.u5_w1_d1.entities;
 
-import lombok.Getter;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-public class Pizza implements MenuItem {
-    private static final int BASE_CALORIES = 800;
-    private String name;
-    private List<Topping> toppings;
-    private double basePrice;
+public class Pizza extends ElementMenu {
 
-    public Pizza(String name, List<Topping> toppings, double basePrice) {
-        this.name = name;
-        this.toppings = toppings;
-        this.basePrice = basePrice;
+    private List<Topping> toppings = new ArrayList<>();
+
+    protected Pizza() {
+        super();
+    }
+
+
+    public Pizza(String name, double price, int calories) {
+        super(name, price, calories);
+    }
+
+
+    public List<Topping> getToppings() {
+        return toppings;
+    }
+
+
+    @Override
+    public double getPrice() {
+        double total = super.getPrice();
+        for (Topping topping : toppings) {
+            total += topping.getPrice();
+        }
+        return total;
     }
 
     @Override
     public int getCalories() {
-        return BASE_CALORIES + toppings.stream()
-                .mapToInt(Topping::getCalories)
-                .sum();
+        int total = super.getCalories();
+        for (Topping topping : toppings) {
+            total += topping.getCalories();
+        }
+        return total;
     }
 
-    @Override
-    public double getPrice() {
-        return basePrice + toppings.stream()
-                .mapToDouble(Topping::getPrice)
-                .sum();
-    }
-
-    private String getToppingNames() {
-        List<String> names = new ArrayList<>();
-        names.add("tomato");
-        names.add("cheese");
-        toppings.forEach(t -> names.add(t.getName().toLowerCase()));
-        return String.join(", ", names);
-    }
 
     @Override
     public String toString() {
-        return name + " (" + getToppingNames() + ")";
+        return "Pizza{" +
+                "name='" + getName() + '\'' +
+                ", toppings=" + toppings +
+                ", totalCalories=" + getCalories() +
+                ", totalPrice=" + getPrice() +
+                '}';
     }
+
 }

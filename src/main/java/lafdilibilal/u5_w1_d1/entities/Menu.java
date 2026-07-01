@@ -1,31 +1,49 @@
 package lafdilibilal.u5_w1_d1.entities;
 
-import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.List;
 
-@AllArgsConstructor
+@Getter
 public class Menu {
-    private List<Pizza> pizzas;
-    private List<Topping> toppings;
-    private List<Drink> drinks;
 
+    private List<Pizza> pizza;
+    private List<Drink> drink;
+    private List<Topping> topping;
 
-    public void print() {
-        System.out.printf("%-50s %-10s %-10s%n", "Pizzas", "Calories", "Price");
-        pizzas.forEach(p -> System.out.printf("%-50s %-10d %-10.2f%n",
-                p.toString(), p.getCalories(), p.getPrice()));
-
-        System.out.println();
-
-        System.out.printf("%-50s %-10s %-10s%n", "Toppings", "Calories", "Price");
-        toppings.forEach(t -> System.out.printf("%-50s %-10d %-10.2f%n",
-                t.getName(), t.getCalories(), t.getPrice()));
-
-        System.out.println();
-
-        System.out.printf("%-50s %-10s %-10s%n", "Drinks", "Calories", "Price");
-        drinks.forEach(d -> System.out.printf("%-50s %-10d %-10.2f%n",
-                d.toString(), d.getCalories(), d.getPrice()));
+    protected Menu() {
     }
+
+    public Menu(List<Pizza> pizza, List<Topping> topping, List<Drink> drink) {
+        this.pizza = pizza;
+        this.topping = topping;
+        this.drink = drink;
+    }
+
+    public void printMenu() {
+
+        System.out.printf("%-40s %-10s %-10s%n", "PIZZE", "Calories", "Price");
+        pizza.forEach(p -> System.out.printf(
+                "%-40s %-10d %-10.2f%n",
+                p.getName(), p.getCalories(), p.getPrice()
+        ));
+
+        System.out.println();
+
+        System.out.printf("%-40s %-10s %-10s%n", "TOPPING", "Calories", "Price");
+        topping.forEach(t -> System.out.printf(
+                "%-40s %-10d %-10.2f%n",
+                t.getName(), t.getCalories(), t.getPrice()
+        ));
+
+        System.out.println();
+
+        System.out.printf("%-40s %-10s %-10s%n", "BEVANDE", "Calories", "Price");
+        drink.forEach(d -> System.out.printf(
+                "%-40s %-10d %-10.2f%n",
+                d.getName(), d.getCalories(), d.getPrice()
+        ));
+    }
+
+
 }
